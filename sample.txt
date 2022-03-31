@@ -1,4 +1,4 @@
 Youtube Link
 Timestamp 1
-Timestamp 2
-Timestamp 3
+1000
+00:10:00
