@@ -2,6 +2,18 @@
 
 # Prompts user input for the name of the file/stream name. Anywhere from 1 stream to a thousand (I think)
 read -a streamlist -p "Stream Names: "
+read -p "Download to: " directory
+
+# Defaults to the current working directory
+# Creates the desired directory if it does not already exist
+if [-z "$directory"] then 
+    directory=(pwd)
+elif [! -d "$directory"] then
+    mkdir $PWD/$directory
+    directory=$PWD/$directory
+else
+    directory=$PWD/$directory
+fi
 
 # Applies a for loop for every item in the 'Stream Names' input, pulling the relevant file
 # Stream name provided in the first command is used for both naming the final file, this for loop and sourcing the reference file
@@ -30,7 +42,7 @@ do
         video=$(youtube-dl --youtube-skip-dash-manifest -g ${streamlink} | sed -n '1 p')
         audio=$(youtube-dl --youtube-skip-dash-manifest -g ${streamlink} | sed -n '2 p')
 
-        ffmpeg -hide_banner -loglevel error -ss $starttime -i "$video" -ss $starttime -i "$audio" -map 0:v -map 1:a -t 10 -c:v libx264 -c:a aac "./vids/${streamname}_${starttime}.mkv"
+        ffmpeg -hide_banner -loglevel error -ss $starttime -i "$video" -ss $starttime -i "$audio" -map 0:v -map 1:a -t 10 -c:v libx264 -c:a aac "${directory}/${streamname}_${starttime}.mkv"
 
     done
 done
