@@ -10,7 +10,7 @@ There are two scripts, `dl.sh` being the manual version where you download one v
 If you don't want to place the script in the project folder just make sure that it is in one of the directories in your path variable.
 
 ### Manual (dl.sh)
-`dl.sh` works by inputting a relevant Youtube link, followed by the desired stream name (this will also be the final name of the video) and the starting timestamp
+`dl.sh` works by inputting a relevant Youtube link, followed by the desired stream name (this will also be the final name of the video), a starting timestamp and an optional ending timestamp. If the ending timestamp is not provided, the script will default to downloading the video until 10 seconds after the starting timestamp.
 
 ![dl sample](./images/dl.png)
 
