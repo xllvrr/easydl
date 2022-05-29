@@ -6,13 +6,13 @@ read -p "Download to: " directory
 
 # Defaults to the current working directory
 # Creates the desired directory if it does not already exist
-if [-z "$directory"] then 
-    directory=(pwd)
-elif [! -d "$directory"] then
-    mkdir $PWD/$directory
-    directory=$PWD/$directory
+if [ -z "$directory" ]; then 
+    directory=$(pwd)
+elif [ -d "$directory" ]; then
+    directory="$directory"
 else
-    directory=$PWD/$directory
+    mkdir "$directory"
+    directory="$directory"
 fi
 
 # Applies a for loop for every item in the 'Stream Names' input, pulling the relevant file
@@ -39,8 +39,8 @@ do
         # Print is just to check the timestamp is correct and as a sort of progress bar
         printf '%s\n' "$starttime"
 
-        video=$(youtube-dl --youtube-skip-dash-manifest -g ${streamlink} | sed -n '1 p')
-        audio=$(youtube-dl --youtube-skip-dash-manifest -g ${streamlink} | sed -n '2 p')
+        video=$(youtube-dl --youtube-skip-dash-manifest -g "${streamlink}" | sed -n '1 p')
+        audio=$(youtube-dl --youtube-skip-dash-manifest -g "${streamlink}" | sed -n '2 p')
 
         ffmpeg -hide_banner -loglevel error -ss $starttime -i "$video" -ss $starttime -i "$audio" -map 0:v -map 1:a -t 10 -c:v libx264 -c:a aac "${directory}/${streamname}_${starttime}.mkv"
 
