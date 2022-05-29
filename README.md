@@ -14,9 +14,7 @@ If you don't want to place the script in the project folder just make sure that 
 
 ![dl sample](./images/dl.png)
 
-Once all the prompts are input, youtube-dl and ffmpeg will run in the background. The final downloaded video will be downloaded to either the current working directory or a specified folder in the current directory. If the folder already exists, it will add to that folder. If not, this script will create the folder.
-
-The final video will be formatted as `streamname_timestamp.mkv`. The video output can be changed as you like but that's beyond the scope of this README. Documentation can be found in the ffmpeg documentation or on forums.
+Once all the prompts are input, youtube-dl and ffmpeg will run in the background. The final downloaded video will be downloaded to the current directory formatted as `streamname_timestamp.mkv`. The video output can be changed as you like but that's beyond the scope of this README. Documentation can be found in the ffmpeg documentation or on forums.
 
 ### Automatic (dlauto.sh)
 
@@ -28,7 +26,7 @@ The script will simply prompt you for all the relevant names. Make sure to get t
 
 Because of the way the script is coded, the filename needs to be same as the desired stream name/final name of the video. Suggestions are made within the script if you wish to do otherwise.
 
-Similar to the `dl.sh` script, the final videos are formatted as `streamname_timestamp.mkv` and output in the current directory or a directory that you specify. If the folder does not exist, the script will create the folder.
+Similar to the `dl.sh` script, the final videos are formatted as `streamname_timestamp.mkv` and output in the current directory.
 
 ## Things to Note
 
